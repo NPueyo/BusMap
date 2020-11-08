@@ -1,92 +1,43 @@
 <html>
     <head>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
-
     </head>
 
 <script>
-var golfdata = {
-    "type": "FeatureCollection",
-   "features": [
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -0.8710502,41.6771416 ]
-    },
-    "properties": {
-    "Tipo":"3 rutas",
-    "Rutas":1,
-    "Shift":"",
-    "Dirección":"Av. San Juan de la Peña ",
-    "Ciudad":"Zaragoza",
-    "Provincia":"Zaragoza, España",
-    "Comentario":"Esq. Alcalde Caballero",
-    "Ida/vuelta":"Vuelta",
-    "Mañana":"",
-    "Tarde":"",
-    "Noche":"",
-    "Central":"",
-    "latlong":"41.6771416,-0.8710502"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -0.8718167,41.6668363 ]
-    },
-    "properties": {
-    "Tipo":"3 rutas",
-    "Rutas":1,
-    "Shift":"",
-    "Dirección":"Av. San Juan de la Peña ",
-    "Ciudad":"Zaragoza",
-    "Provincia":"Zaragoza, España",
-    "Comentario":"Frente Hierros Alfonso",
-    "Ida/vuelta":"Vuelta",
-    "Mañana":"",
-    "Tarde":"",
-    "Noche":"",
-    "Central":"",
-    "latlong":"41.6668363,-0.8718167"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -0.8714217,41.666861 ]
-    },
-    "properties": {
-    "Tipo":"3 rutas",
-    "Rutas":1,
-    "Shift":"",
-    "Dirección":"Av. San Juan de la Peña nº 90",
-    "Ciudad":"Zaragoza",
-    "Provincia":"Zaragoza, España",
-    "Comentario":"Hierros Alfonso - Pd. Bus",
-    "Ida/vuelta":"Ida",
-    "Mañana":"04:54",
-    "Tarde":"12:52",
-    "Noche":"20:54",
-    "Central":"06:52",
-    "latlong":"41.666861,-0.8714217"
-    }
-  }
-]};
 
+function validateJSON(str) {
+    try {
+       JSON.parse(str);
+    } catch (e) {
+     return false;
+    }
+  return true;
+}
 
 window.onload = function() {
-var golfdata =$.getJSON("rutas3.geojson").error(function() { alert("error"); });
 
-
+//rutas3.geojson
+$.getJSON('rutas3.geojson')
+ .done(function(obj,status,xhdr){
+  console.log(validateJSON(xhdr.responseText));
+  var golfdata  = JSON.parse(xhdr.responseText);
+  console.log(golfdata);
     document.getElementById("jsoncontent").innerHTML = "<tr><th>Ciudad</th><th>Tipo</th>";
-  
-    golfdata.features.forEach(function(entry) {
-        document.getElementById("jsoncontent").innerHTML += "<tr><td>" + entry.properties.Ciudad + "</td><td>" + entry.properties.Tipo + "</td></tr>";
-    });
+      golfdata.features.forEach(function(entry) {
+        document.getElementById("jsoncontent").innerHTML += "<tr><td>" + entry.properties.Folder + "</td><td>" + entry.properties.Name + "</td></tr>";
+}
+);
+
+});
+
+
+
+
+
+
 }; </script>
+
 <table id="jsoncontent"></table>
+
     </body>
     </hhtml>
