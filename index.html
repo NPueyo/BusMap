@@ -1,43 +1,63 @@
 <html>
-    <head>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
-    </head>
+  <head>
+    <title>Horario de autobuses</title>
+  </head>
 
-<script>
+  <body>
+    <table id="jsoncontent"></table>
 
-function validateJSON(str) {
-    try {
-       JSON.parse(str);
-    } catch (e) {
-     return false;
-    }
-  return true;
-}
+    <script>
+      function validateJSON(str) {
+        try {
+          JSON.parse(str)
+        } catch (e) {
+          return false
+        }
+        return true
+      }
 
-window.onload = function() {
+      function createHeader(text) {
+        const header = document.createElement('th')
+        header.textContent = text
+        return header
+      }
 
-//rutas3.geojson
-$.getJSON('rutas3.geojson')
- .done(function(obj,status,xhdr){
-  console.log(validateJSON(xhdr.responseText));
-  var golfdata  = JSON.parse(xhdr.responseText);
-  console.log(golfdata);
-    document.getElementById("jsoncontent").innerHTML = "<tr><th>Ciudad</th><th>Tipo</th>";
-      golfdata.features.forEach(function(entry) {
-        document.getElementById("jsoncontent").innerHTML += "<tr><td>" + entry.properties.Folder + "</td><td>" + entry.properties.Name + "</td></tr>";
-}
-);
+      function createCell(text) {
+        const cell = document.createElement('td')
+        cell.textContent = text
+        return cell
+      }
 
-});
+      window.onload = function () {
+        //rutas3.geojson
+        fetch('./rutas3.geojson')
+          .then((res) => res.json())
+          .then((golfdata) => {
+            const table = document.getElementById('jsoncontent')
+            const header = table.appendChild(document.createElement('tr'))
 
+            header.append(createHeader('Ciudad'))
+            header.append(createHeader('Tipo'))
+            header.append(createHeader('Hora 1'))
+            header.append(createHeader('Hora 2'))
+            header.append(createHeader('Hora 3'))
+            header.append(createHeader('Hora 4'))
 
+            for (const entry of golfdata.features) {
+              console.log(entry.properties.Folder)
+              // Append a row.
+              const row = document.createElement('tr')
+              row.append(createCell(entry.properties.Folder))
+              row.append(createCell(entry.properties.Name))
+              row.append(createCell(entry.properties.Hora1))
+              row.append(createCell(entry.properties.Hora2))
+              row.append(createCell(entry.properties.Hora3))
+              row.append(createCell(entry.properties.Hora4))
 
-
-
-
-}; </script>
-
-<table id="jsoncontent"></table>
-
-    </body>
-    </hhtml>
+              table.append(row)
+            }
+          })
+      }
+    </script>
+  </body>
+</html>
