@@ -137,24 +137,22 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 						//filtramos
 						L.geoJSON(golfdata, {
 							filter: function (feature, layer) {
-								if (feature.properties) {
-									// If  return false (don't render features)
-									if (feature.properties.Dia == RutasDia) {
-                                        //creamos la cabecera
-                                        const table = document.getElementById('jsoncontent')
-                                        const header = table.appendChild( document.createElement('tr'))
-                                        document.getElementById('jsoncontent').innerHTML = "";
+								        //creamos la cabecera
+										const table = document.getElementById('jsoncontent')
+										table.innerHTML = "";
 
+                                        const header = table.appendChild( document.createElement('tr'))
                                         header.append(createHeader('Ciudad'))
                                         header.append(createHeader('Dirección'))
                                         header.append(createHeader('Info'))
-                                        
+								if (feature.properties) {
+									// If  return false (don't render features)
+									if (feature.properties.Dia === RutasDia) {                                             
 										// Append a row.
 										const row = document.createElement('tr')
 										row.append(createCell(feature.properties.Ciudad))
 										row.append(createCell(feature.properties.Direccion))
 										row.append(createCell(feature.properties.Info))
-										row.append(createCell(feature.properties.Mañana))
 										table.append(row)
 										return true
 									}
