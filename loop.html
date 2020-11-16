@@ -12,16 +12,12 @@
 			integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
 			crossorigin=""
 		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-		/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
-		<script
-			src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
 			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-			crossorigin=""
-		></script>
+            crossorigin="""></script>
+            
 		<style>
 			html,
 			body {
@@ -39,50 +35,30 @@
 		<div class="mobile-container">
 			<!-- Top Navigation Menu -->
 			<div class="topnav">
-				<a href="#home" class="active">Nombre Ruta</a>
+
+                <a href="#home" class="active">Nombre Ruta</a>
+                
 				<div id="myLinks">
-					<a id="RutasHabituales" onclick="myMapFunction(this.id);"
-						>Rutas Habituales</a
-					>
-					<a id="RutasCentral" onclick="myMapFunction(this.id);"
-						>Rutas Turno Central</a
-					>
-					<a id="Rutas6" onclick="myMapFunction(this.id);">6 Rutas</a>
-					<a id="Rutas3" onclick="myMapFunction(this.id);">3 Rutas</a>
-					<a id="Rutas1" onclick="myMapFunction(this.id);">1 Ruta</a>
-					<a id="Rutas1Arranque" onclick="myMapFunction(this.id);"
-						>1 Rutas (arranque)</a
-					>
-					<a id="Rutas3Arranque" onclick="myMapFunction(this.id);"
-						>3 Rutas (arranque)</a
-					>
+					<a id="RutasHabituales" onclick="myMapFunction(this.id);">Rutas Habituales</a>
+					<a id="RutasCentral"    onclick="myMapFunction(this.id);">Rutas Turno Central</a>
+					<a id="Rutas6"          onclick="myMapFunction(this.id);">6 Rutas</a>
+					<a id="Rutas3"          onclick="myMapFunction(this.id);">3 Rutas</a>
+					<a id="Rutas1"          onclick="myMapFunction(this.id);">1 Ruta</a>
+					<a id="Rutas1Arranque"  onclick="myMapFunction(this.id);">1 Rutas (arranque)</a>
+					<a id="Rutas3Arranque"  onclick="myMapFunction(this.id);">3 Rutas (arranque)</a>
 				</div>
-				<a
-					href="javascript:void(0);"
-					class="icon"
-					onclick="myFunction()"
-				>
-					<i class="fa fa-bars"></i>
-				</a>
-				<div id="map"></div>
+				<a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+                
+                <div id="map"></div>
 
-				<button id="R1" onclick="myRouteFunction(this.id);">
-					Ruta 1
-				</button>
-				<button id="R2" onclick="myRouteFunction(this.id);">
-					Ruta 2
-				</button>
-
+				<button id="R1" onclick="myRouteFunction(this.id);">Ruta 1</button>
+				<button id="R2" onclick="myRouteFunction(this.id);">Ruta 2</button>
 				<p>
 					<input type="radio" name="viahe" value="Ida" /> Ida<br />
-					<input type="radio" name="viahe" value="Vuelta" />
-					Vuelta<br />
+					<input type="radio" name="viahe" value="Vuelta" />Vuelta<br />
 				</p>
 				<table id="jsoncontent"></table>
-
-				<button onclick="topFunction()" id="myBtn" title="Go to top">
-					Top
-				</button>
+				<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 			</div>
 
 			<!-- End smartphone / tablet look -->
@@ -104,6 +80,15 @@
 
 				ruta = ''
 
+//Creamos el mapa
+                var map = L.map('map').setView([41.65334, -0.8854287],13)
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+    {	maxZoom: 18,id: 'mapbox/light-v9',tileSize: 512,zoomOffset: -1,}).addTo(map)
+
+
+
+
 				function MyRouteFunction(IDE) {
 					Return = IDE
 				}
@@ -119,7 +104,7 @@
 							break
 
 						case 'RutasCentral':
-							RutasDia = 'Habituales Central'
+							RutasDia = "Habituales Central";
 							break
 
 						case 'Rutas6':
@@ -144,15 +129,47 @@
 
 						default:
 							RutasDia = 'Habituales MTN'
-					}
+                    }
+                    
+                    fetch('./Rutas.geojson').then((res) => res.json()).then((golfdata) => {
+
+
+						//filtramos
+						L.geoJSON(golfdata, {
+							filter: function (feature, layer) {
+								if (feature.properties) {
+									// If  return false (don't render features)
+									if (feature.properties.Dia == RutasDia) {
+                                        //creamos la cabecera
+                                        const table = document.getElementById('jsoncontent')
+                                        const header = table.appendChild( document.createElement('tr'))
+                                        document.getElementById('jsoncontent').innerHTML = "";
+
+                                        header.append(createHeader('Ciudad'))
+                                        header.append(createHeader('Dirección'))
+                                        header.append(createHeader('Info'))
+                                        
+										// Append a row.
+										const row = document.createElement('tr')
+										row.append(createCell(feature.properties.Ciudad))
+										row.append(createCell(feature.properties.Direccion))
+										row.append(createCell(feature.properties.Info))
+										row.append(createCell(feature.properties.Mañana))
+										table.append(row)
+										return true
+									}
+								}
+							},
+
+							//onEachFeature: onEachFeature
+						}).addTo(map)
+					})
 				}
 
 				function getUrlVars() {
 					var vars = [],
 						hash
-					var hashes = window.location.href
-						.slice(window.location.href.indexOf('?') + 1)
-						.split('&')
+					var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')
 					for (var i = 0; i < hashes.length; i++) {
 						hash = hashes[i].split('=')
 						vars.push(hash[0])
@@ -164,10 +181,8 @@
 				function myFunction() {
 					var x = document.getElementById('myLinks')
 					if (x.style.display === 'block') {
-						x.style.display = 'none'
-					} else {
-						x.style.display = 'block'
-					}
+                        x.style.display = 'none'} 
+                    else {x.style.display = 'block'}
 				}
 
 				function createHeader(text) {
@@ -183,91 +198,12 @@
 				}
 
 				function validateJSON(str) {
-					try {
-						JSON.parse(str)
-					} catch (e) {
-						return false
-					}
+					try {JSON.parse(str)} catch (e) {
+					return false}
 					return true
 				}
 
-				function onEachFeature(feature, layer) {
-					layer.bindPopup(feature.Info)
-				}
-
-				fetch('./Rutas.geojson')
-					.then((res) => res.json())
-					.then((golfdata) => {
-						//Creamos el mapa
-						var map = L.map('map').setView(
-							[41.65334, -0.8854287],
-							13
-						)
-
-						L.tileLayer(
-							'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
-							{
-								maxZoom: 18,
-								id: 'mapbox/light-v9',
-								tileSize: 512,
-								zoomOffset: -1,
-							}
-						).addTo(map)
-
-						//creamos la cabecera
-						const table = document.getElementById('jsoncontent')
-						const header = table.appendChild(
-							document.createElement('tr')
-						)
-
-						header.append(createHeader('Ciudad'))
-						header.append(createHeader('Tipo'))
-						header.append(createHeader('Hora 1'))
-						header.append(createHeader('Hora 2'))
-						header.append(createHeader('Hora 3'))
-
-						//filtramos
-						L.geoJSON(golfdata, {
-							filter: function (feature, layer) {
-								if (feature.properties) {
-									// If  return false (don't render features)
-									if (feature.properties.Dia == RutasDia) {
-										// Append a row.
-										const row = document.createElement('tr')
-										row.append(
-											createCell(
-												feature.properties.Ciudad
-											)
-										)
-										row.append(
-											createCell(
-												feature.properties.Direccion
-											)
-										)
-										row.append(
-											createCell(feature.properties.Info)
-										)
-										row.append(
-											createCell(
-												feature.properties.Mañana
-											)
-										)
-										row.append(
-											createCell(feature.properties.Tarde)
-										)
-										row.append(
-											createCell(feature.properties.Noche)
-										)
-
-										table.append(row)
-										return true
-									}
-								}
-							},
-
-							//onEachFeature: onEachFeature
-						}).addTo(map)
-					})
+				function onEachFeature(feature, layer) {layer.bindPopup(feature.Info)}
 			</script>
 		</div>
 	</body>
