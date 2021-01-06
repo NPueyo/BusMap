@@ -1,1 +1,280 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Loop</title>
+
+        <meta charset="utf-8" />
+        <link rel="manifest" href="Bus.webmanifest">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="Estilo.CSS" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+			integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+			crossorigin=""
+		/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+			crossorigin=""></script>
+			
+			<style>
+				html,
+				body {
+					height: 100%;
+					margin: 0;
+				}
+				#map {
+					width: 480px;
+					height: 400px;
+				}
+				button {
+        width: 100px;
+    }
+			</style>
+		</head>
+
+		<body>
+			<!-- Simulate a smartphone / tablet -->
+			<div class="mobile-container">
+				<!-- Top Navigation Menu -->
+				<div class="topnav">
+	
+					<a href="#home" class="active">Nombre Ruta</a>
+					
+					<div id="myLinks">
+					<!-- 	<a id="Ejemplo" onclick="myMapFunction(this.id);">Ejemplo</a>-->
+
+					</div>
+					<a href="javascript:void(0);" class="icon" onclick="DisplayMenu()"><i class="fa fa-bars"></i></a>
+					
+					<div id="map"></div>
+	
+					<div  id="buttons" class="btn-group">
+				
+					</div>
+
+					<table id="jsoncontent"></table>
+					<!-- El botón este de abajo no va, pero por ahora no me es importante 
+					<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>-->
+				</div>
+	
+				<!-- End smartphone / tablet look -->
+	
+<script>
+
+
+//Tabla
+function createHeader(text) {
+					const header = document.createElement('th')
+					header.textContent = text
+					return header
+				}
+
+function createCell(text) {
+					const cell = document.createElement('td')
+					cell.textContent = text
+					return cell
+				}
+
+//GEOJson
+function validateJSON(str) {
+					try {JSON.parse(str)} catch (e) {
+					return false}
+					return true
+				}
+
+
+
+// Creamos la tabla
+const table = document.getElementById('jsoncontent')
+const header = table.appendChild(document.createElement('tr'))
+
+header.append(createHeader('Dia'))
+header.append(createHeader('Ruta'))
+header.append(createHeader('Parada'))
+header.append(createHeader('Direccion'))
+header.append(createHeader('Provincia'))
+
+
+
+//Creamos el mapa
+  //http://zevross.com/blog/2014/10/28/tips-for-creating-leafleft-js-maps/
+
+  var map = L.map('map', {
+        center: [41.6336504,-0.9083038],
+        zoom: 10,
+        maxBounds:L.latLngBounds(L.latLng(41.38, -1.5), L.latLng(42, -0.60))
+    }).setView([41.65334, -0.8854287],13)
+
+
+    var mapboxTiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        maxZoom: 18,id: 'mapbox/light-v9',tileSize: 512,zoomOffset: -1,
+    });
+
+//create the layer config object first
+var overlayMaps = {};
+
+fetch('./Rutas.geojson')
+.then((res) => res.json())
+.then((data) => {
+//Dia->Ruta->Parada->Sentido
+//Guardamos  en i el primer dato de cada y anadimos una capa que luego rellenaremos
+//Dia|Ruta|Parada|Sentido|Layer
+//
+//Extraemos cuantos días y rutas hay
+
+var i = [];
+var j =[];
+var ok= false;
+for (const entry of data.features) {
+//Captura la primera ruta de cada Dia
+	if (i.includes(entry.properties.Dia) == false){ok = true}
+	else{   if (i.includes(entry.properties.Ruta) == false){ok = true}}
+    
+    if (ok == true) {
+        ok = false;
+			var i = [];
+			i.push(entry.properties.Dia);		
+			i.push(entry.properties.Ruta);
+            j.push(i);
+    //---------------------
+    //Capas
+    //---------------------
+    ruta=entry.properties.Ruta
+
+    overlayMaps[ruta]=L.geoJson(data, {
+                        filter: function(feature, layer) {
+                            return feature.properties.Ruta == ruta;
+                        },
+                        pointToLayer: function(feature, latlng) {
+                            return L.marker(latlng, {
+                            }).on('mouseover', function() {
+
+                                Info    = "";
+                                Manana  = "";
+                                Tarde   = "";
+                                Noche   = "";
+                                Central = "";
+
+                                if (!(feature.properties.Info     ==="")) {Info     = feature.properties.Info+" "} 
+                                if (!(feature.properties.Manana   ==="")) {Manana   = "Mañana: "   +feature.properties.Manana+ "<BR>"   }   
+                                if (!(feature.properties.Tarde    ==="")) {Tarde    = "Tarde: "    +feature.properties.Tarde + "<BR>"   }   
+                                if (!(feature.properties.Noche    ==="")) {Noche    = "Noche: "    +feature.properties.Noche + "<BR>"   } 
+                                if (!(feature.properties.Central  ==="")) {Central  = "Central: "  +feature.properties.Central          } 
+
+                                this.bindPopup(feature.properties.Direccion+ " "+ Info+ feature.properties.Sentido + "<BR>"+
+                                Manana+Tarde + Noche +Central).openPopup();
+                            });
+                        }
+                    })
+		}
+}
+map.addLayer(mapboxTiles)
+map.addLayer(overlayMaps["1de1"]) //Just to test
+
+
+
+
+const lineBreak = document.createElement('br');
+    for (const entry of j) {
+    //---------------------
+    //botones de los días
+    //---------------------
+
+    const NavBar = document.getElementById("myLinks");
+
+    var diaGrupo=entry[0]
+
+    if ( !NavBar.contains(document.getElementById(diaGrupo))) {
+        const ElementText = document.createElement('a');
+        ElementText.id = diaGrupo;
+        ElementText.textContent = "Ruta "+diaGrupo;
+
+        ElementText.onclick= myMapFunction.bind (this, j,diaGrupo);
+        NavBar.append(ElementText)
+    }
+
+}
+});
+    
+
+
+
+
+//Funciones auxiliares
+
+function DisplayMenu() {
+					var x = document.getElementById('myLinks')
+					if (x.style.display === 'block') {
+                        x.style.display = 'none'} 
+                    else {x.style.display = 'block'}
+				}
+
+function myMapFunction(j,i) {
+
+    DisplayMenu()
+    //Elminamos todas las vcapas de otros días
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
+    map.addLayer(mapboxTiles)
+
+//---------------------
+//botones de ruta
+//---------------------
+
+const buttons = document.getElementById("buttons");
+buttons.innerHTML = "";
+
+for (const entry of j) {
+    if (i==entry[0]) {
+    var layerName= entry[1];
+       
+        // <button type="button" id="others" class="btn btn-primary">Others</button>
+           
+        const divElementText = document.createElement('button')
+        divElementText.type += "button"
+        divElementText.className += "btn btn-primary"
+        divElementText.id = layerName;
+        divElementText.textContent = layerName;
+         
+        divElementText.onclick= displayHideLayer.bind (this, layerName);
+              
+        buttons.append(divElementText)
+    /*
+No va, paluego
+         var qwer =i % 3;
+         //console.log(qwer)
+         if ((qwer)==0) {
+            console.log(qwer)
+             buttons.append(lineBreak)
+            };
+*/
+        }
+}
+
+}      
+
+function displayHideLayer(name){
+    if (map.hasLayer(overlayMaps[name])) {map.removeLayer(overlayMaps[name])}
+            else {map.addLayer(overlayMaps[name])}
+        };
+
+
+//REFS
+//http://embed.plnkr.co/dFF4MfNcpbcg4eA9Y46J/ Markers within bounds
+//or
+//https://stackoverflow.com/questions/22081680/get-a-list-of-markers-layers-within-current-map-bounds-in-leaflet
+</script>
+
+
+
+</body>
+</html>
  
