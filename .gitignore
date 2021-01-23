@@ -1,9 +1,9 @@
 
 # NP Common folders #
 ###################
-$ git config --global core.excludesfile ~/_OLD
-$ git config --global core.excludesfile ~/_Ref
-$ git config --global core.excludesfile ~/_NOk
+_OLD/
+_Ref/
+_NOk/
 # Compiled source #
 ###################
 *.com
