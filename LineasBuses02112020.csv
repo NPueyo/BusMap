@@ -1,0 +1,87 @@
+﻿Folder;Name;Latitude;Longitude;Shift;Address;City;Province;Comment;Ida/vuelta;Hora1;Hora2;Hora3;Hora4
+Rutas_3;Ruta 1_3;41,6666687;-0,8238801;;Avd. Real Zaragoza nº 29;Zaragoza;Zaragoza, España;nº 29 - Pd. Bus;Ida;04:43;12:40;20:43;06:40
+Rutas_3;Ruta 1_3;41,6670119;-0,8318499;;Avd. Santa Isabel  ;Zaragoza;Zaragoza, España;Plaza Serrano Bergés - Pd. Bus;Ida;04:44;12:41;20:44;06:41
+Rutas_3;Ruta 1_3;41,6698563;-0,839224;;Avd. Santa Isabel  ;Zaragoza;Zaragoza, España;Esq. Avd. Industria - Gasolinera - Pd. Bus;Ida;04:46;12:43;20:46;06:43
+Rutas_3;Ruta 1_3;41,6699345;-0,8463302;;Avd. Cataluña  ;Zaragoza;Zaragoza, España;CAF - Pd. Bus (?);Ida;04:48;12:45;20:48;06:45
+Rutas_3;Ruta 1_3;41,667657;-0,8551449;;Avd. Cataluña nº 189 ;Zaragoza;Zaragoza, España;Los Charros;Ida;04:50;12:47;20:50;06:47
+Rutas_3;Ruta 1_3;41,6637028;-0,8612384;;Avd. Cataluña  nº 103;Zaragoza;Zaragoza, España;Frente Felisa Galé;Ida;04:52;12:49;20:52;06:49
+Rutas_3;Ruta 1_3;41,6629175;-0,8662946;;Marqués de la Cadena ;Zaragoza;Zaragoza, España;Frente nº 57 - Pd. Bus CAN;Ida;04:53;12:51;20:53;06:51
+Rutas_3;Ruta 1_3;41,666861;-0,8714217;;Av. San Juan de la Peña nº 90;Zaragoza;Zaragoza, España;Hierros Alfonso - Pd. Bus;Ida;04:54;12:52;20:54;06:52
+Rutas_3;Ruta 1_3;41,675329;-0,870227;;San Juan de la Peña nº 182 ;Zaragoza;Zaragoza, España;Pd. Bus;Ida;04:55;12:53;20:55;06:53
+Rutas_3;Ruta 1_3;41,66857;-0,876678;;Salvador Allende nº 67 ;Zaragoza;Zaragoza, España;Pd. Bus;Ida;04:56;12:54;20:56;06:54
+Rutas_3;Ruta 1_3;41,6675533;-0,8766818;;Salvador Allende  ;Zaragoza;Zaragoza, España;Esq. Valle de Broto - Pd. Bus;Ida;04:57;12:55;20:57;06:55
+Rutas_3;Ruta 1_3;41,6675145;-0,8869326;;María Zambrano  ;Zaragoza;Zaragoza, España;León Felipe - Pd. Bus;Ida;04:58;12:56;20:58;06:56
+Rutas_3;Ruta 1_3;41,6717098;-0,8893981;;María Zambrano  ;Zaragoza;Zaragoza, España;Ildefonso Manuel Gil - Pd. Bus;Ida;04:59;12:57;20:59;06:57
+Rutas_3;Ruta 1_3;41,6773494;-0,8893384;;María Zambrano  ;Zaragoza;Zaragoza, España;Esq. Pablo Iglesias - Pd. Bus;Ida;05:00;12:58;21:00;06:58
+Rutas_3;Ruta 1_3;41,749628;-1,175514;;Pol. Ind Entrerrios ;Figueruelas;Zaragoza, España;Opel Puerta 5;Ida;05:30;13:30;21:30;07:30
+Rutas_3;Ruta 1_3;41,749628;-1,175514;;Pol. Ind Entrerrios ;Figueruelas;Zaragoza, España;Opel Puerta 5;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6760468;-0,890922;;Luis Legaz  ;Zaragoza;Zaragoza, España;Esq. Gómez Avellaneda;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6704221;-0,8906701;;Gómez de Avellaneda  ;Zaragoza;Zaragoza, España;Esq. Saiz de otero - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,624888;-0,876361;;Gómez Avellaneda nº 23 ;Zaragoza;Zaragoza, España;Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6675533;-0,8766818;;Salvador Allende  ;Zaragoza;Zaragoza, España;Esq. Valle de Broto - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6749239;-0,8769198;;Salvador Allende  ;Zaragoza;Zaragoza, España;Frente nº 67 - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6771416;-0,8710502;;Av. San Juan de la Peña ;Zaragoza;Zaragoza, España;Esq. Alcalde Caballero;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6668363;-0,8718167;;Av. San Juan de la Peña ;Zaragoza;Zaragoza, España;Frente Hierros Alfonso;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6628839;-0,8664623;;Marqués de la Cadena nº 57 ;Zaragoza;Zaragoza, España;Plaza Mozart - Pd. Bus (?);Vuelta;;;;
+Rutas_3;Ruta 1_3;41,663684;-0,8612825;;Avd. Cataluña  ;Zaragoza;Zaragoza, España;Esq. Felisa Galé;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6673479;-0,8525495;;Avd. Cataluña  ;Zaragoza;Zaragoza, España;Frente nº 189 - Los Charros;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,670449;-0,8447889;;Avd. Cataluña ;Zaragoza;Zaragoza, España;Frente CAF (?);Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6698219;-0,8392838;;Avd. Santa Isabel  ;Zaragoza;Zaragoza, España;Frente Avd. Industria;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6670038;-0,8317995;;Avd. Santa Isabel  ;Zaragoza;Zaragoza, España;Frente Plaza Serrano Bergés - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 1_3;41,6667726;-0,8240368;;Avd. Real Zaragoza  ;Zaragoza;Zaragoza, España;Frente nº 29 - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,6394685;-0,9049811;;Violante de Hungría nº 7;Zaragoza;Zaragoza, España;;Ida;04:48;12:46;20:48;06:48
+Rutas_3;Ruta 2_3;41,64095;-0,89684;;Pedro Cerbuna nº 9;Zaragoza;Zaragoza, España;Pd. Bus;Ida;04:50;12:48;20:50;06:50
+Rutas_3;Ruta 2_3;41,643486;-0,889733;;Avenida Goya nº 66 ;Zaragoza;Zaragoza, España;Pd. Bus;Ida;04:52;12:50;20:52;06:52
+Rutas_3;Ruta 2_3;41,6495182;-0,8985604;;Plaza Roma  ;Zaragoza;Zaragoza, España;Mercadona;Ida;04:55;12:53;20:55;06:55
+Rutas_3;Ruta 2_3;41,66068;-0,9023;;Puerta Sancho nº 11 ;Zaragoza;Zaragoza, España;Esq. Bruselas - Edif. D. Quijote;Ida;05:02;13:00;21:02;07:02
+Rutas_3;Ruta 2_3;41,65477;-0,900889;;Avd. de Navarra nº 60 ;Zaragoza;Zaragoza, España;Centro Cultural - Pd. Bus;Ida;05:06;13:04;21:06;07:06
+Rutas_3;Ruta 2_3;41,6585391;-0,9181635;;Avd. de Navarra ;Zaragoza;Zaragoza, España;Frente nº 183 - Pd. Bus ;Ida;05:07;13:05;21:07;07:07
+Rutas_3;Ruta 2_3;41,6650722;-0,9345872;;"Torres San Lamberto ""Punto 0""  ";Zaragoza;Zaragoza, España;Pd. Bus;Ida;05:10;13:10;21:10;07:10
+Rutas_3;Ruta 2_3;41,6892029;-0,9780414;;Ctra. Logroño ;Monzalbarba ;Zaragoza, España;Desvío Monzalbarba - Pd. Bus (?);Ida;05:14;13:14;21:14;07:14
+Rutas_3;Ruta 2_3;41,7015942;-0,999997;;Ctra. Logroño ;Utebo ;Zaragoza, España;Desvío Utebo - Pd. Bus (?);Ida;05:17;13:17;21:17;07:17
+Rutas_3;Ruta 2_3;41,7167281;-1,0239408;;Calle Canteras  ;Casetas;Zaragoza, España;Pd. Bus;Ida;05:18;13:18;21:18;07:18
+Rutas_3;Ruta 2_3;41,7196595;-1,0297382;;Avenida de Logroño  nº 76;Casetas;Zaragoza, España;Cuartel - Pd. Bus;Ida;05:19;13:19;21:19;07:19
+Rutas_3;Ruta 2_3;41,7228759;-1,0368519;;Urbanización Alameda ;Casetas;Zaragoza, España;;Ida;05:20;13:20;21:20;07:20
+Rutas_3;Ruta 2_3;41,7665409;-1,1260872;;Alagón  ;Alagón ;Zaragoza, España;Rotonda - Pd. Bus;Ida;05:25;13:25;21:25;07:25
+Rutas_3;Ruta 2_3;41,749628;-1,175514;;Pol. Ind Entrerrios ;Figueruelas;Zaragoza, España;Opel Puerta 5;Ida;05:30;13:30;21:30;07:30
+Rutas_3;Ruta 2_3;41,749628;-1,175514;;Pol. Ind Entrerrios ;Figueruelas;Zaragoza, España;Opel Puerta 5;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,7665409;-1,1260872;;Alagón  ;Alagón ;Zaragoza, España;Rotonda - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,7228759;-1,0368519;;Urbanización Alameda ;Casetas;Zaragoza, España;Frente Urbanización Alameda;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,7190264;-1,0285836;;Ctra. Logroño  ;Casetas;Zaragoza, España;Frente nº 52;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,7165156;-1,0239846;;Frente Calle Canteras ;Casetas;Zaragoza, España;(?);Vuelta;;;;
+Rutas_3;Ruta 2_3;41,7015942;-0,999997;;Ctra. Logroño ;Utebo ;Zaragoza, España;Desvío Utebo - Pd. Bus (?);Vuelta;;;;
+Rutas_3;Ruta 2_3;41,6892708;-0,978388;;Ctra. Logroño ;Monzalbarba ;Zaragoza, España;Desvío Monzalbarba - Pd. Bus (?);Vuelta;;;;
+Rutas_3;Ruta 2_3;41,6650722;-0,9345872;;"Torres San Lamberto ""Punto 0""  ";Zaragoza;Zaragoza, España;Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,65477;-0,900889;;Avd. de Navarra nº 183 ;Zaragoza;Zaragoza, España;Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,6555055;-0,9088245;;Rioja  ;Zaragoza;Zaragoza, España;Rotonda Frente estación del AVE;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,6613647;-0,9021134;;Avd. Pablo Gargallo  ;Zaragoza;Zaragoza, España;Esq. Puerta Sancho;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,6492023;-0,8988307;;Plaza Roma  ;Zaragoza;Zaragoza, España;Esq. Escusura;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,6445971;-0,8925454;;Avd. Goya  ;Zaragoza;Zaragoza, España;Esq. Baltasar Gracián;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,6408984;-0,8952374;;Plaza San Francisco  ;Zaragoza;Zaragoza, España;Kiosco Prensa - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 2_3;41,6397123;-0,9024957;;Violante de Hungría  ;Zaragoza;Zaragoza, España;Frente nº 7 - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,6550253;-0,9207166;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Frente nº 132 - 2º paso de cebra;Ida;04:45;12:42;20:42;06:45
+Rutas_3;Ruta 3_3;41,6480108;-0,9178979;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Frente Escultor Palao - Pd. Bus;Ida;04:46;12:43;20:43;06:46
+Rutas_3;Ruta 3_3;41,6450473;-0,9165637;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Frente Villa de Andorra - Pd. Bus;Ida;04:47;12:44;20:44;06:47
+Rutas_3;Ruta 3_3;41,6417168;-0,9149879;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Esq. Gómez Laguna - Pd. Bus;Ida;04:48;12:45;20:45;06:48
+Rutas_3;Ruta 3_3;41,6366927;-0,9129439;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Frente Avd. Sainz de Varanda;Ida;04:49;12:46;20:46;06:49
+Rutas_3;Ruta 3_3;41,6336504;-0,9083038;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Gas. Casablanca - Esq. La Vía;Ida;04:50;12:47;20:47;06:50
+Rutas_3;Ruta 3_3;41,632608;-0,885066;;Avd. América nº 11 ;Zaragoza;Zaragoza, España;Frente Plaza Canteras - Pd. Bus;Ida;04:52;12:49;20:49;06:52
+Rutas_3;Ruta 3_3;41,6363724;-0,8783998;;Avd. San José  ;Zaragoza;Zaragoza, España;Esq. Bellavista - Pd. Bus;Ida;04:55;12:52;20:52;06:55
+Rutas_3;Ruta 3_3;41,63759;-0,87668;;Avd. San José nº 97 ;Zaragoza;Zaragoza, España;Pd. Bus;Ida;04:56;12:53;20:53;06:56
+Rutas_3;Ruta 3_3;41,64569;-0,8743987;;Avd. San José nº 3 ;Zaragoza;Zaragoza, España;Esq. Miguel Servet - Pd. Bus;Ida;04:57;12:54;20:54;06:57
+Rutas_3;Ruta 3_3;41,646318;-0,871819;;Compromiso de Caspe nº 48;Zaragoza;Zaragoza, España;Esq. Doctor Iranzo - Pd. Bus ;Ida;04:58;12:55;20:55;06:58
+Rutas_3;Ruta 3_3;41,646318;-0,871819;;Compromiso de Caspe nº 76;Zaragoza;Zaragoza, España;Pd. Bus;Ida;05:00;12:57;20:57;07:00
+Rutas_3;Ruta 3_3;41,749628;-1,175514;;Pol. Ind Entrerrios ;Figueruelas;Zaragoza, España;Opel Puerta 5;Ida;05:30;13:30;21:30;07:30
+Rutas_3;Ruta 3_3;41,749628;-1,175514;;Pol. Ind Entrerrios ;Figueruelas;Zaragoza, España;Opel Puerta 5;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,6550253;-0,9207166;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Frente nº 132 - 2º paso de cebra;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,6480108;-0,9178979;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Frente Escultor Palao - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,6450473;-0,9165637;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Frente Villa de Andorra - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,6417168;-0,9149879;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Esq. Gómez Laguna - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,6366927;-0,9129439;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Frente Avd. Sainz de Varanda;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,6336504;-0,9083038;;Vía Hispanidad  ;Zaragoza;Zaragoza, España;Gas. Casablanca - Esq. La Vía;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,632608;-0,885066;;Avd. América nº 11 ;Zaragoza;Zaragoza, España;Frente Plaza Canteras - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,6363724;-0,8783998;;Avd. San José  ;Zaragoza;Zaragoza, España;Esq. Bellavista - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,63759;-0,87668;;Avd. San José nº 97 ;Zaragoza;Zaragoza, España;Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,64569;-0,8743987;;Avd. San José nº 3 ;Zaragoza;Zaragoza, España;Esq. Miguel Servet - Pd. Bus;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,646318;-0,871819;;Compromiso de Caspe nº 48;Zaragoza;Zaragoza, España;Esq. Doctor Iranzo - Pd. Bus ;Vuelta;;;;
+Rutas_3;Ruta 3_3;41,646318;-0,871819;;Compromiso de Caspe nº 76 ;Zaragoza;Zaragoza, España;Pd. Bus;Vuelta;;;;
