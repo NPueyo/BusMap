@@ -4,14 +4,24 @@
 		<title>Loop</title>
 
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
         <link rel="manifest" href="Bus.webmanifest">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="Estilo.CSS" />
-		<link rel="stylesheet"href="./leafletjs/leaflet.css"/>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+			integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+			crossorigin=""
+		/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
         
-        <script src="./leafletjs/leaflet.js"></script>
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+			crossorigin=""></script>
 			
 			<style>
 				html,
@@ -43,12 +53,21 @@
 					</div>
 					<a href="javascript:void(0);" class="icon" onclick="DisplayMenu()"><i class="fa fa-bars"></i></a>
 					
-					<div id="map"></div>
-	
-					<div  id="buttons" class="btn-group">
-				
-					</div>
+                    <div id="map"></div>
+                    
 
+
+                    <div >
+                        
+                        <input  type="radio" name="Sentido" id="Ida" value="1">
+                        <label  for="inlineRadio1">Ida</label>
+
+                        <input  type="radio" name="Sentido" id="Vuelta" value="1">
+                        <label  for="inlineRadio2">VUelta</label>
+                      </div>
+                      
+					<div  id="buttons" class="btn-group"></div>
+					<div  id="Sentido"> </div>	
 					<table id="jsoncontent"></table>
 					<!-- El botón este de abajo no va, pero por ahora no me es importante 
 					<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>-->
@@ -78,20 +97,6 @@ function validateJSON(str) {
 					return false}
 					return true
 				}
-
-
-
-// Creamos la tabla
-const table = document.getElementById('jsoncontent')
-const header = table.appendChild(document.createElement('tr'))
-
-header.append(createHeader('Dia'))
-header.append(createHeader('Ruta'))
-header.append(createHeader('Parada'))
-header.append(createHeader('Direccion'))
-header.append(createHeader('Provincia'))
-
-
 
 //Creamos el mapa
   //http://zevross.com/blog/2014/10/28/tips-for-creating-leafleft-js-maps/
@@ -140,7 +145,7 @@ for (const entry of data.features) {
 
     overlayMaps[ruta]=L.geoJson(data, {
                         filter: function(feature, layer) {
-                            return feature.properties.Ruta == ruta;
+                            return feature.properties.Ruta == ruta && feature.properties.Sentido== "Ida";
                         },
                         pointToLayer: function(feature, latlng) {
                             return L.marker(latlng, {
@@ -163,10 +168,27 @@ for (const entry of data.features) {
                             });
                         }
                     })
+    overlayMaps[ruta+"_Vuelta"]=L.geoJson(data, {
+                        filter: function(feature, layer) {
+                            return feature.properties.Ruta == ruta && feature.properties.Sentido== "Ida";
+                        },
+                        pointToLayer: function(feature, latlng) {
+                            return L.marker(latlng, {
+                            }).on('mouseover', function() {
+
+                                Info    = "";
+                                if (!(feature.properties.Info     ==="")) {Info     = feature.properties.Info+" "} 
+
+
+                                this.bindPopup(feature.properties.Direccion+ " "+ Info+ feature.properties.Sentido + "<BR>"+
+                                Manana+Tarde + Noche +Central).openPopup();
+                            });
+                        }
+                    })
 		}
 }
 map.addLayer(mapboxTiles)
-map.addLayer(overlayMaps["1de1"]) //Just to test
+//map.addLayer(overlayMaps["1de1"]) //Just to test
 
 
 
@@ -180,24 +202,33 @@ const lineBreak = document.createElement('br');
     const NavBar = document.getElementById("myLinks");
 
     var diaGrupo=entry[0]
-    console.log(diaGrupo)
+
     if ( !NavBar.contains(document.getElementById(diaGrupo))) {
         const ElementText = document.createElement('a');
         ElementText.id = diaGrupo;
         ElementText.textContent = "Ruta "+diaGrupo;
+
         ElementText.onclick= myMapFunction.bind (this, j,diaGrupo);
         NavBar.append(ElementText)
     }
 
 }
+});
+    
+
 
 
 
 //Funciones auxiliares
 
+function DisplayMenu() {
+					var x = document.getElementById('myLinks')
+					if (x.style.display === 'block') {
+                        x.style.display = 'none'} 
+                    else {x.style.display = 'block'}
+				}
 
-
-function myMapFunction(j,i,diaGrupo) {
+function myMapFunction(j,i) {
 
     DisplayMenu()
     //Elminamos todas las vcapas de otros días
@@ -207,14 +238,13 @@ function myMapFunction(j,i,diaGrupo) {
     map.addLayer(mapboxTiles)
 
 
-
 //---------------------
 //botones de ruta
 //---------------------
 
 const buttons = document.getElementById("buttons");
-
 buttons.innerHTML = "";
+
 for (const entry of j) {
     if (i==entry[0]) {
     var layerName= entry[1];
@@ -244,52 +274,59 @@ No va, paluego
 
 }      
 
-});
-    
-
-
-
-function DisplayMenu() {
-					var x = document.getElementById('myLinks')
-					if (x.style.display === 'block') {
-                        x.style.display = 'none'} 
-                    else {x.style.display = 'block'}
-				}
-
-console.log(name)
 function displayHideLayer(name){
-    if (map.hasLayer(overlayMaps[name])) {map.removeLayer(overlayMaps[name])}
-            else {map.addLayer(overlayMaps[name])}
-        };
 
-//---------------------
-//Tabla de ruta
-//---------------------
-console.log(name)
-fetch('./Rutas.geojson')
-.then((res) => res.json())
-.then((data) => {
+//remove all layers
+//For loop
+map.removeLayer(overlayMaps[name])
 
-const table = document.getElementById('jsoncontent')
-    for (const entry of data.features) {
- 
-        //console.log(entry.properties.Dia)
-			  if (entry.properties.Ruta == name){
-                // Append a row.
-				const row = document.createElement('tr')
-                row.append(createCell(entry.properties.Ruta))
-                row.append(createCell(entry.properties.Parada))
-                row.append(createCell(entry.properties.Manana))
-                row.append(createCell(entry.properties.Tarde))
-                row.append(createCell(entry.properties.Noche))
-                row.append(createCell(entry.properties.Central))
-				table.append(row)
-			}
-		}
-    })
+
+//check if ida or vuelta
+
+var Sentido = "";
+
+if (document.getElementById('Ida').checked) {Sentido = "Ida"}
+    else {if (document.getElementById('Vuelta').checked) {Sentido = "Vuelta"}}
+
+
+map.addLayer(overlayMaps[name+"_"+Sentido])
 
 
 
+
+        fetch('./Rutas.geojson')
+        .then((res) => res.json())
+        .then((data) => {
+
+            const table = document.getElementById('jsoncontent')
+            table.innerHTML = ""
+            // Creamos la tabla
+            const header = table.appendChild(document.createElement('tr'))
+
+            header.append(createHeader('Ruta'))
+            header.append(createHeader('Parada'))
+            header.append(createHeader('Manana'))
+            header.append(createHeader('Tarde'))
+            header.append(createHeader('Noche'))
+            header.append(createHeader('Central'))
+
+                for (const entry of data.features) {
+            
+                    //console.log(entry.properties.Dia)
+                        if (entry.properties.Ruta == name){
+                            // Append a row.
+                            const row = document.createElement('tr')
+                            row.append(createCell(entry.properties.Ruta))
+                            row.append(createCell(entry.properties.Parada))
+                            row.append(createCell(entry.properties.Manana))
+                            row.append(createCell(entry.properties.Tarde))
+                            row.append(createCell(entry.properties.Noche))
+                            row.append(createCell(entry.properties.Central))
+                            table.append(row)
+                        }
+                    }
+            })
+ };
 
 
 //REFS
@@ -302,3 +339,4 @@ const table = document.getElementById('jsoncontent')
 
 </body>
 </html>
+ 
