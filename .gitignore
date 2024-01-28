@@ -4,14 +4,11 @@
 _OLD/
 _Ref/
 _NOk/
-# Compiled source #
+
+# NP Project folders #
 ###################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
+Imagenes/
+
 
 # Packages #
 ############
