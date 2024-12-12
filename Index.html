@@ -274,59 +274,55 @@ No va, paluego
 
 }
 
-function displayHideLayer(name){
+function displayHideLayer(name) {
 
 //remove all layers
 //For loop
-map.removeLayer(overlayMaps[name])
+map.removeLayer(overlayMaps[name]);
 
 
 //check if ida or vuelta
 
-var Sentido = "";
+  let sentido = document.getElementById('Ida').checked ? "Ida" : (document.getElementById('Vuelta').checked ? "Vuelta" : "");
 
-if (document.getElementById('Ida').checked) {Sentido = "Ida"}
-    else {if (document.getElementById('Vuelta').checked) {Sentido = "Vuelta"}}
+  if (sentido) {
+    map.addLayer(overlayMaps[name + "_" + sentido]);
+  }
 
+  fetch('./Rutas.geojson')
+    .then(res => res.json())
+    .then(data => {
+      const table = document.getElementById('jsoncontent');
+      table.innerHTML = "";
 
-map.addLayer(overlayMaps[name+"_"+Sentido])
+      // Creamos la tabla
+      const header = table.appendChild(document.createElement('tr'));
+      header.append(createHeader('Ruta'));
+      header.append(createHeader('Parada'));
+      header.append(createHeader('Manana'));
+      header.append(createHeader('Tarde'));
+      header.append(createHeader('Noche'));
+      header.append(createHeader('Central'));
 
-
-
-
-        fetch('./Rutas.geojson')
-        .then((res) => res.json())
-        .then((data) => {
-
-            const table = document.getElementById('jsoncontent')
-            table.innerHTML = ""
-            // Creamos la tabla
-            const header = table.appendChild(document.createElement('tr'))
-
-            header.append(createHeader('Ruta'))
-            header.append(createHeader('Parada'))
-            header.append(createHeader('Manana'))
-            header.append(createHeader('Tarde'))
-            header.append(createHeader('Noche'))
-            header.append(createHeader('Central'))
-
-                for (const entry of data.features) {
-
-                    //console.log(entry.properties.Dia)
-                        if (entry.properties.Ruta == name){
-                            // Append a row.
-                            const row = document.createElement('tr')
-                            row.append(createCell(entry.properties.Ruta))
-                            row.append(createCell(entry.properties.Parada))
-                            row.append(createCell(entry.properties.Manana))
-                            row.append(createCell(entry.properties.Tarde))
-                            row.append(createCell(entry.properties.Noche))
-                            row.append(createCell(entry.properties.Central))
-                            table.append(row)
-                        }
-                    }
-            })
-};
+      for (const entry of data.features) {
+        if (entry.properties.Ruta === name) {
+          // Append a row
+          const row = document.createElement('tr');
+          row.append(createCell(entry.properties.Ruta));
+          row.append(createCell(entry.properties.Parada));
+          row.append(createCell(entry.properties.Manana));
+          row.append(createCell(entry.properties.Tarde));
+          row.append(createCell(entry.properties.Noche));
+          row.append(createCell(entry.properties.Central));
+          table.append(row);
+        }
+      }
+    })
+    .catch(error => {
+        console.error("Error fetching JSON data:", error);
+      // Handle the error here, for example, display a message to the user
+    });
+}
 
 
 //REFS
