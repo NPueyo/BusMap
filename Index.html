@@ -14,7 +14,7 @@
 			crossorigin=""
 		/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-        
+
         <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
         <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -22,7 +22,7 @@
 		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
 			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 			crossorigin=""></script>
-			
+
 			<style>
 				html,
 				body {
@@ -44,37 +44,37 @@
 			<div class="mobile-container">
 				<!-- Top Navigation Menu -->
 				<div class="topnav">
-	
+
 					<a href="#home" class="active">Nombre Ruta</a>
-					
+
 					<div id="myLinks">
 					<!-- 	<a id="Ejemplo" onclick="myMapFunction(this.id);">Ejemplo</a>-->
 
 					</div>
 					<a href="javascript:void(0);" class="icon" onclick="DisplayMenu()"><i class="fa fa-bars"></i></a>
-					
+
                     <div id="map"></div>
-                    
+
 
 
                     <div >
-                        
+
                         <input  type="radio" name="Sentido" id="Ida" value="1">
                         <label  for="inlineRadio1">Ida</label>
 
                         <input  type="radio" name="Sentido" id="Vuelta" value="1">
                         <label  for="inlineRadio2">VUelta</label>
-                      </div>
-                      
+                    </div>
+
 					<div  id="buttons" class="btn-group"></div>
-					<div  id="Sentido"> </div>	
+					<div  id="Sentido"> </div>
 					<table id="jsoncontent"></table>
-					<!-- El botón este de abajo no va, pero por ahora no me es importante 
+					<!-- El botón este de abajo no va, pero por ahora no me es importante
 					<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>-->
 				</div>
-	
+
 				<!-- End smartphone / tablet look -->
-	
+
 <script>
 
 
@@ -101,7 +101,7 @@ function validateJSON(str) {
 //Creamos el mapa
   //http://zevross.com/blog/2014/10/28/tips-for-creating-leafleft-js-maps/
 
-  var map = L.map('map', {
+    var map = L.map('map', {
         center: [41.6336504,-0.9083038],
         zoom: 10,
         maxBounds:L.latLngBounds(L.latLng(41.38, -1.5), L.latLng(42, -0.60))
@@ -131,11 +131,11 @@ for (const entry of data.features) {
 //Captura la primera ruta de cada Dia
 	if (i.includes(entry.properties.Dia) == false){ok = true}
 	else{   if (i.includes(entry.properties.Ruta) == false){ok = true}}
-    
+
     if (ok == true) {
         ok = false;
 			var i = [];
-			i.push(entry.properties.Dia);		
+			i.push(entry.properties.Dia);
 			i.push(entry.properties.Ruta);
             j.push(i);
     //---------------------
@@ -157,11 +157,11 @@ for (const entry of data.features) {
                                 Noche   = "";
                                 Central = "";
 
-                                if (!(feature.properties.Info     ==="")) {Info     = feature.properties.Info+" "} 
-                                if (!(feature.properties.Manana   ==="")) {Manana   = "Mañana: "   +feature.properties.Manana+ "<BR>"   }   
-                                if (!(feature.properties.Tarde    ==="")) {Tarde    = "Tarde: "    +feature.properties.Tarde + "<BR>"   }   
-                                if (!(feature.properties.Noche    ==="")) {Noche    = "Noche: "    +feature.properties.Noche + "<BR>"   } 
-                                if (!(feature.properties.Central  ==="")) {Central  = "Central: "  +feature.properties.Central          } 
+                                if (!(feature.properties.Info     ==="")) {Info     = feature.properties.Info+" "}
+                                if (!(feature.properties.Manana   ==="")) {Manana   = "Mañana: "   +feature.properties.Manana+ "<BR>"   }
+                                if (!(feature.properties.Tarde    ==="")) {Tarde    = "Tarde: "    +feature.properties.Tarde + "<BR>"   }
+                                if (!(feature.properties.Noche    ==="")) {Noche    = "Noche: "    +feature.properties.Noche + "<BR>"   }
+                                if (!(feature.properties.Central  ==="")) {Central  = "Central: "  +feature.properties.Central          }
 
                                 this.bindPopup(feature.properties.Direccion+ " "+ Info+ feature.properties.Sentido + "<BR>"+
                                 Manana+Tarde + Noche +Central).openPopup();
@@ -177,7 +177,7 @@ for (const entry of data.features) {
                             }).on('mouseover', function() {
 
                                 Info    = "";
-                                if (!(feature.properties.Info     ==="")) {Info     = feature.properties.Info+" "} 
+                                if (!(feature.properties.Info     ==="")) {Info     = feature.properties.Info+" "}
 
 
                                 this.bindPopup(feature.properties.Direccion+ " "+ Info+ feature.properties.Sentido + "<BR>"+
@@ -214,7 +214,7 @@ const lineBreak = document.createElement('br');
 
 }
 });
-    
+
 
 
 
@@ -224,7 +224,7 @@ const lineBreak = document.createElement('br');
 function DisplayMenu() {
 					var x = document.getElementById('myLinks')
 					if (x.style.display === 'block') {
-                        x.style.display = 'none'} 
+                        x.style.display = 'none'}
                     else {x.style.display = 'block'}
 				}
 
@@ -248,31 +248,31 @@ buttons.innerHTML = "";
 for (const entry of j) {
     if (i==entry[0]) {
     var layerName= entry[1];
-       
+
         // <button type="button" id="others" class="btn btn-primary">Others</button>
-           
+
         const divElementText = document.createElement('button')
         divElementText.type += "button"
         divElementText.className += "btn btn-primary"
         divElementText.id = layerName;
         divElementText.textContent = layerName;
-         
+
         divElementText.onclick= displayHideLayer.bind (this, layerName);
-              
+
         buttons.append(divElementText)
     /*
 No va, paluego
-         var qwer =i % 3;
+        var qwer =i % 3;
          //console.log(qwer)
-         if ((qwer)==0) {
+        if ((qwer)==0) {
             console.log(qwer)
-             buttons.append(lineBreak)
+            buttons.append(lineBreak)
             };
 */
         }
 }
 
-}      
+}
 
 function displayHideLayer(name){
 
@@ -311,7 +311,7 @@ map.addLayer(overlayMaps[name+"_"+Sentido])
             header.append(createHeader('Central'))
 
                 for (const entry of data.features) {
-            
+
                     //console.log(entry.properties.Dia)
                         if (entry.properties.Ruta == name){
                             // Append a row.
@@ -326,7 +326,7 @@ map.addLayer(overlayMaps[name+"_"+Sentido])
                         }
                     }
             })
- };
+};
 
 
 //REFS
@@ -339,4 +339,3 @@ map.addLayer(overlayMaps[name+"_"+Sentido])
 
 </body>
 </html>
- 
